@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import { useGetCharactersQuery, useSearchCharactersQuery } from "../api/postsApi";
 import type { Character } from "../model/Character";
 import { Link } from "react-router-dom";
-import Pagination from "./Pagination";
+import Pagination from "../components/Pagination";
 
 const ITEMS_PER_PAGE = 10; 
 

@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
-import Item from "../components/Item";
-import ListItem from "../components/listItem";
+import Item from "../page/Item";
+import ListItem from "../page/ListItem";
 
 
 const router = createBrowserRouter([

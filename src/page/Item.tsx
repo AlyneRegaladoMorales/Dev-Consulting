@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useGetCharacterByIdQuery } from "../api/postsApi";
+import Comments from "../components/Comment";
 
 const Item = () => {
   const { id } = useParams(); 
@@ -30,6 +31,7 @@ const Item = () => {
         <p>Ki actual: <b>{data.ki}</b></p>
         <p>Ki máximo: <b>{data.maxKi}</b></p>
       </div>
+      <Comments characterId={Number(id)} />
     </main>
   );
 };
