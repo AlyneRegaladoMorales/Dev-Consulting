@@ -1,8 +1,9 @@
 import { useState, useMemo } from "react";
 import { useGetCharactersQuery, useSearchCharactersQuery } from "../api/postsApi";
 import type { Character } from "../model/Character";
-import { Link } from "react-router-dom";
 import Pagination from "../components/Pagination";
+import Navbar from "../components/Navbar";
+import Card from "../components/Card";
 
 const ITEMS_PER_PAGE = 10; 
 
@@ -46,7 +47,10 @@ const ListItem = () => {
   if (isError) return <p className="text-center text-red-600">Error al cargar datos.</p>;
 
   return (
-    <main className="mx-auto max-w-7xl px-4 py-8">
+    <>
+  
+    <Navbar />
+    <main className="mx-auto max-w-7xl px-4 py-8 mt-20">
       <section className="mb-6">
         <input
           type="text"
@@ -62,21 +66,7 @@ const ListItem = () => {
 
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
         {filtered.map((char) => (
-          <Link
-            key={char.id}
-            to={`/character/${char.id}`}
-            className="rounded-2xl border bg-white/70 p-4 shadow-sm backdrop-blur 
-                       hover:shadow-md transition hover:scale-[1.02]"
-          >
-            <img
-              src={char.image}
-              alt={char.name}
-              className="mx-auto h-40 w-auto rounded-xl object-cover"
-              loading="lazy"
-            />
-            <h3 className="mt-2 text-center text-base font-bold">{char.name}</h3>
-            <p className="text-center text-xs text-gray-600">{char.race || "—"}</p>
-          </Link>
+           <Card key={char.id} character={char} />
         ))}
       </div>
 
@@ -92,6 +82,7 @@ const ListItem = () => {
         />
       )}
     </main>
+    </>
   );
 };
 

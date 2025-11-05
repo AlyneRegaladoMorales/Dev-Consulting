@@ -22,10 +22,10 @@ const Pagination = ({ page, totalPages, onPageChange }: PaginationProps) => {
       <button
         onClick={handlePrev}
         disabled={page === 1}
-        className={`px-3 py-1.5 rounded-lg border text-sm font-medium transition 
+        className={`px-3 py-1.5 rounded-md border text-sm font-medium transition 
           ${page === 1 
-            ? "opacity-50 cursor-not-allowed border-gray-300 text-gray-400" 
-            : "hover:bg-orange-100 border-gray-300 text-gray-700"}`}
+            ? "opacity-50 cursor-not-allowed  text-gray-400" 
+            : "hover:bg-orange-100  text-gray-700"}`}
       >
         Anterior
       </button>
@@ -34,10 +34,10 @@ const Pagination = ({ page, totalPages, onPageChange }: PaginationProps) => {
         <button
           key={num}
           onClick={() => onPageChange(num)}
-          className={`px-3 py-1.5 rounded-lg border text-sm font-semibold transition 
+          className={`px-3 py-1.5 rounded-md border text-sm transition 
             ${num === page
-              ? "bg-orange-500 text-white border-orange-500"
-              : "bg-white text-gray-700 border-gray-300 hover:bg-orange-100"}`}
+              ? "bg-orange-400 text-white border-black "
+              : "bg-white  hover:bg-orange-100"}`}
         >
           {num}
         </button>
@@ -48,8 +48,8 @@ const Pagination = ({ page, totalPages, onPageChange }: PaginationProps) => {
         disabled={page === totalPages}
         className={`px-3 py-1.5 rounded-lg border text-sm font-medium transition 
           ${page === totalPages 
-            ? "opacity-50 cursor-not-allowed border-gray-300 text-gray-400" 
-            : "hover:bg-orange-100 border-gray-300 text-gray-700"}`}
+            ? "opacity-50 cursor-not-allowed text-gray-400" 
+            : "hover:bg-orange-100 text-gray-700"}`}
       >
         Siguiente 
       </button>

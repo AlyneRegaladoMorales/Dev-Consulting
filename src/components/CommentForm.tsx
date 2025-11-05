@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useCreateCommentMutation } from "../../api/commentApi";
-import { commentValidation } from "./validation";
-import type { CommentFormData } from "./validation";
+import { useCreateCommentMutation } from "../api/commentApi";
+import { commentValidation } from "../utils/validationComment";
+import type { CommentFormData } from "../utils/validationComment";
 import { useForm } from "react-hook-form";
 
 interface CommentFormProps {
@@ -101,7 +101,8 @@ const CommentForm = ({ characterId }: CommentFormProps) => {
       <button
         type="submit"
         disabled={isPosting || isSubmitting || !isValid}
-        className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 disabled:bg-gray-400"
+        className="bg-blue-300 font-semibold px-4 py-2 rounded-md border 
+             hover:bg-blue-400  transition-colors duration-200 disabled:bg-gray-400"
       >
         {isPosting ? "Publicando..." : "Publicar comentario"}
       </button>

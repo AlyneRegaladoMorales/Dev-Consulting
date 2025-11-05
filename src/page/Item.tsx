@@ -1,20 +1,26 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useGetCharacterByIdQuery } from "../api/postsApi";
 import Comments from "../components/Comment";
+import Navbar from "../components/Navbar";
+import { useGetCustomCharacterByIdQuery } from "../api/customCharacter";
 
-const Item = () => {
+interface ItemProps {
+  isCustom?: boolean;
+}
+
+const Item = ({ isCustom = false }: ItemProps) => {
   const { id } = useParams(); 
-  const { data, isLoading, isError } = useGetCharacterByIdQuery(Number(id));
+  const { data, isLoading, isError } = isCustom
+    ? useGetCustomCharacterByIdQuery(Number(id))
+    : useGetCharacterByIdQuery(Number(id));
 
   if (isLoading) return <p className="text-center py-10">Cargando personaje...</p>;
   if (isError || !data) return <p className="text-center text-red-600">Error al cargar datos.</p>;
 
   return (
-    <main className="max-w-xl mx-auto px-4 py-8">
-      <Link to="/" className="text-blue-500 hover:underline mb-4 inline-block">
-         Volver al listado
-      </Link>
-
+    <>
+    <Navbar />
+    <main className="max-w-xl mx-auto px-4 py-8 mt-20">
       <div className="text-center">
         <img
           src={data.image}
@@ -33,6 +39,7 @@ const Item = () => {
       </div>
       <Comments characterId={Number(id)} />
     </main>
+    </>
   );
 };
 

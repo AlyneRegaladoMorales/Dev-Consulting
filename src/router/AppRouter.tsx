@@ -1,6 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import Item from "../page/Item";
 import ListItem from "../page/ListItem";
+import CreateCharacter  from "../page/CreateCharacter";
+import EditCharacter from "../page/EditCharacter";
+import ListCustomItem from "../page/ListCustomItem";
 
 
 const router = createBrowserRouter([
@@ -12,6 +15,22 @@ const router = createBrowserRouter([
         path: "/character/:id",
         element: <Item />,
     },
+    {
+        path: "/create",
+        element: <CreateCharacter />,
+    },
+    {
+        path: "/edit/:id",
+        element: <EditCharacter />,
+    },
+    {
+        path: "/custom",
+        element: <ListCustomItem />,
+    },
+    {
+    path: "/custom/:id",
+    element: <Item isCustom />, 
+  },
 ])
 
 export  { router };

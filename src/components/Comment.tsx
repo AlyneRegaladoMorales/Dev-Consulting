@@ -1,6 +1,5 @@
-import { useState, type FormEvent } from "react";
-import { useCreateCommentMutation, useGetCommentsByPersonIdQuery } from "../api/commentApi";
-import CommentForm from "./CommentForm/CommentForm";
+import { useGetCommentsByPersonIdQuery } from "../api/commentApi";
+import CommentForm from "./CommentForm";
 
 
 interface CommentsProps {
