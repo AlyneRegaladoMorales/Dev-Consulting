@@ -24,7 +24,7 @@ export const ToastProvider: FC<{ children: ReactNode }> = ({ children }) => {
     <ToastContext.Provider value={{ showToast }}>
       {children}
       {toasts.map((t) => (
-        <Toast key={t.id} message={t.message} type={t.type} onClose={() => {}} />
+        <Toast key={t.id} message={t.message} type={t.type}  />
       ))}
     </ToastContext.Provider>
   );

@@ -9,6 +9,7 @@ interface CardProps {
 }
 
 const Card = ({ character, isCustom = false }: CardProps) => {
+  
   const navigate = useNavigate();
   const [deleteCharacter] = useDeleteCustomCharacterMutation();
   const { showToast } = useToast();

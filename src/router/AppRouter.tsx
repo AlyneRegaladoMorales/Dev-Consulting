@@ -4,6 +4,7 @@ import ListItem from "../page/ListItem";
 import CreateCharacter  from "../page/CreateCharacter";
 import EditCharacter from "../page/EditCharacter";
 import ListCustomItem from "../page/ListCustomItem";
+import Dashboard from "../page/Dashboard";
 
 
 const router = createBrowserRouter([
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
     path: "/custom/:id",
     element: <Item isCustom />, 
   },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+  }
 ])
 
 export  { router };

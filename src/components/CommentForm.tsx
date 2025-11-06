@@ -100,7 +100,6 @@ const CommentForm = ({ characterId }: CommentFormProps) => {
 
       <button
         type="submit"
-        disabled={isPosting || isSubmitting || !isValid}
         className="bg-blue-300 font-semibold px-4 py-2 rounded-md border 
              hover:bg-blue-400  transition-colors duration-200 disabled:bg-gray-400"
       >

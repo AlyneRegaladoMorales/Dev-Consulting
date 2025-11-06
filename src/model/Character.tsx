@@ -1,8 +1,19 @@
+export interface CustomCharacter{
+  id: number;
+  name: string;
+  race: string;
+  ki: string;
+  maxKi: string;
+  image: string;
+  description: string;
+}
+
 export interface Character {
   id: number;
   name: string;
   race: string;
   ki: string;
+  gender?: string;
   maxKi: string;
   image: string;
   description: string;

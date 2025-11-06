@@ -1,19 +1,28 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import type { Character } from "../model/Character";
+import type { CustomCharacter } from "../model/Character";
 
 export const customCharacter = createApi({
     reducerPath: "charactersApi",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8081/api/" }),
   tagTypes: ["Character"],
   endpoints: (builder) => ({
-    getCustomCharacters: builder.query<Character[], void>({
+    getCustomCharacters: builder.query<CustomCharacter[], void>({
       query: () => "characters",
-      providesTags: ["Character"],
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.map(({ id }) => ({ type: "Character" as const, id })),
+              { type: "Character", id: "LIST" },
+            ]
+          : [{ type: "Character", id: "LIST" }],
     }),
-    getCustomCharacterById: builder.query<Character, number>({
+    getCustomCharacterById: builder.query<CustomCharacter, number>({
       query: (id) => `characters/${id}`,
+      providesTags: (result, error, id) => [
+        { type: "Character", id }
+      ],
     }),
-    addCustomCharacter: builder.mutation<Character, Partial<Character>>({
+    addCustomCharacter: builder.mutation<CustomCharacter, Partial<CustomCharacter>>({
       query: (character) => ({
         url: "characters",
         method: "POST",
@@ -21,7 +30,7 @@ export const customCharacter = createApi({
       }),
       invalidatesTags: ["Character"],
     }),
-    updateCustomCharacter: builder.mutation<Character, { id: number; data: Character }>({
+    updateCustomCharacter: builder.mutation<CustomCharacter, { id: number; data: CustomCharacter }>({
       query: ({ id, data }) => ({
         url: `characters/${id}`,
         method: "PUT",
@@ -29,7 +38,6 @@ export const customCharacter = createApi({
       }),
       invalidatesTags: (result, error, { id }) => [
         { type: "Character", id },
-        "Character",
       ],
     }),
     deleteCustomCharacter: builder.mutation<void, number>({
