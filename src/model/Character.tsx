@@ -17,6 +17,7 @@ export interface Character {
   maxKi: string;
   image: string;
   description: string;
+  affiliation?: string;
 }
 
 export interface CharacterResponse {

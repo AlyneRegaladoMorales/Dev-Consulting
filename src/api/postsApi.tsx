@@ -18,8 +18,20 @@ export const dbzApi = createApi({
     getCharactersByGender: builder.query<CharacterResponse, string>({
       query: (gender) => `characters?gender=${gender}`,
     }),
-
+    getCharactersByRace: builder.query<CharacterResponse, string>({
+      query: (race) => `characters?race=${race}`,
+    }),
+    getCharactersByAffiliation: builder.query<CharacterResponse, string>({
+      query: (affiliation) => `characters?affiliation=${affiliation}`,
+    }),
   }),
 });
 
-export const { useGetCharactersQuery, useGetCharacterByIdQuery, useSearchCharactersQuery, useGetCharactersByGenderQuery } = dbzApi;
+export const { 
+  useGetCharactersQuery, 
+  useGetCharacterByIdQuery, 
+  useSearchCharactersQuery, 
+  useGetCharactersByGenderQuery,
+  useGetCharactersByRaceQuery,
+  useGetCharactersByAffiliationQuery,
+} = dbzApi;

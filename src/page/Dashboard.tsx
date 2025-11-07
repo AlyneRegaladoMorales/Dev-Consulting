@@ -1,65 +1,63 @@
-
-import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
-import { useGetCharactersByGenderQuery } from "../api/postsApi";
+import { useState } from "react";
 import Navbar from "../components/Navbar";
+import GenreChart from "../components/GenreChart";
+import RaceChart from "../components/RaceChart";
+import AffiliationChart from "../components/AffiliationChart";
+import CharacterChartPlanet from "../components/CharacterChartPlanet";
+import PlanetDistroyed from "../components/PlanetDistroyed";
 
-const COLORS = ["#0088FE", "#FF69B4", "#AAAAAA"];
 
 const Dashboard = () => {
-  const male = useGetCharactersByGenderQuery("Male");
-  const female = useGetCharactersByGenderQuery("Female");
-  const unknown = useGetCharactersByGenderQuery("Unknown");
-
-    if (male.isLoading || female.isLoading || unknown.isLoading)
-    return <p className="text-center text-gray-500">Cargando...</p>;
-
-  if (male.error || female.error || unknown.error)
-    return <p className="text-center text-red-500">Error al cargar los datos</p>;
-
-  const getCount = (resp: unknown): number => {
-    if (!resp) return 0;
-    if (Array.isArray(resp)) return resp.length;
-    const anyResp = resp as any;
-    const arr = anyResp.results ?? anyResp.characters ?? anyResp.data;
-    if (Array.isArray(arr)) return arr.length;
-    return 0;
-  };
-
-  const data = [
-    { name: "Male", value: getCount(male.data) },
-    { name: "Female", value: getCount(female.data) },
-    { name: "Unknown", value: getCount(unknown.data) },
-  ];
-
-  console.log(data);
+  const [selectedFilter, setSelectedFilter] = useState("all");
 
   return (
     <>
-    <Navbar />
-    <div className="flex flex-col items-center bg-white shadow-md rounded-2xl p-6 w-full max-w-md mx-auto mt-8">
-      <h2 className="text-xl font-semibold mb-4 text-center">Distribución por género</h2>
+      <Navbar />
 
-      <PieChart width={400} height={300}>
-        <Pie
-          data={data}
-          dataKey="value"
-          nameKey="name"
-          cx="50%"
-          cy="50%"
-          outerRadius={100}
-          label
+      <div className="flex justify-center mt-18 mb-2 ">
+        <select
+          value={selectedFilter}
+          onChange={(e) => setSelectedFilter(e.target.value)}
+          className="border border-gray-300 rounded-md p-2 bg-gray-50 text-gray-700  focus:outline-none focus:ring-2 focus:ring-blue-400"
         >
-          {data.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index]} />
-          ))}
-        </Pie>
-        <Tooltip />
-        <Legend />
-      </PieChart>
-    </div>
-    </>
-    
-  );
-}
+          <option value="all" >Todos los gráficos</option>
+          <option value="characters">Gráficos de personajes</option>
+          <option value="planets">Gráficos de planetas</option>
+        </select>
+      </div>
 
-export default Dashboard
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 px-4 md:px-8 pb-10 ">
+        {(selectedFilter === "all" || selectedFilter === "characters") && (
+          <>
+            <div className="col-span-1 lg:col-span-1 bg-white dark:bg-gray-800 p-4 rounded-2xl border h-[40vh]">
+              <GenreChart />
+            </div>
+
+            <div className="col-span-1 lg:col-span-1 bg-white dark:bg-gray-800 p-4 rounded-2xl border h-[40vh]">
+              <RaceChart />
+            </div>
+
+            <div className="col-span-1 lg:col-span-1 bg-white dark:bg-gray-800 p-4 rounded-2xl border h-[40vh]">
+              <AffiliationChart />
+            </div>
+          </>
+        )}
+
+        {(selectedFilter === "all" || selectedFilter === "planets") && (
+          <>
+            <div className="col-span-1 lg:col-span-2 bg-white dark:bg-gray-800 p-4 rounded-2xl border h-[40vh]">
+              <CharacterChartPlanet />
+            </div>
+            <div className="col-span-1  bg-white dark:bg-gray-800 p-4 rounded-2xl border h-[40vh]">
+              <PlanetDistroyed />
+            </div>
+
+            
+          </>
+        )}
+      </div>
+    </>
+  );
+};
+
+export default Dashboard;

@@ -3,7 +3,7 @@ import type { CustomCharacter } from "../model/Character";
 
 export const customCharacter = createApi({
     reducerPath: "charactersApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8081/api/" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "https://dev-back-ibkq.onrender.com/api/" }),
   tagTypes: ["Character"],
   endpoints: (builder) => ({
     getCustomCharacters: builder.query<CustomCharacter[], void>({

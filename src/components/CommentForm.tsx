@@ -3,6 +3,7 @@ import { useCreateCommentMutation } from "../api/commentApi";
 import { commentValidation } from "../utils/validationComment";
 import type { CommentFormData } from "../utils/validationComment";
 import { useForm } from "react-hook-form";
+import useToast from "../hook/useToast";
 
 interface CommentFormProps {
   characterId: number;
@@ -10,6 +11,7 @@ interface CommentFormProps {
 
 const CommentForm = ({ characterId }: CommentFormProps) => {
   const [createComment, { isLoading: isPosting }] = useCreateCommentMutation();
+  const { showToast } = useToast();
 
   const {
     register,
@@ -31,9 +33,11 @@ const CommentForm = ({ characterId }: CommentFormProps) => {
         age: data.age,
         comment: data.comment,
       }).unwrap();
+      showToast("Comentario creado con éxito", "success");
+
       reset();
     } catch (error) {
-      console.error("Error al crear comentario:", error);
+      showToast("Error al crear el comentario", "error");
     }
   };
 
@@ -108,5 +112,4 @@ const CommentForm = ({ characterId }: CommentFormProps) => {
     </form>
   );
 };
-
 export default CommentForm;

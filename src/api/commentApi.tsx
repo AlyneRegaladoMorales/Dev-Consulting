@@ -3,7 +3,7 @@ import type { Comment } from "../model/Comment";
 
 export const commentApi = createApi({
     reducerPath: "commentApi",
-    baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8081/api/comments" }),
+    baseQuery: fetchBaseQuery({ baseUrl: "https://dev-back-ibkq.onrender.com/api/comments" }),
     tagTypes: ["Comments"],
     endpoints: (builder) => ({
         createComment: builder.mutation<Comment, Partial<Comment>>({
