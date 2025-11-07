@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { validationCustomCharacter } from "../utils/validationCustomCharacter";
 import { z } from "zod";
 import Navbar from "../components/Navbar";
-import { useState, type ChangeEvent } from "react";
+import { type ChangeEvent } from "react";
 
 type FormData = z.infer<typeof validationCustomCharacter>;
 

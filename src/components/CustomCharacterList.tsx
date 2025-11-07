@@ -6,7 +6,7 @@ const CustomCharacterList = () => {
  const { data, isLoading } = useGetCustomCharactersQuery();
   const [deleteCustomCharacter] = useDeleteCustomCharacterMutation();
 
-  if (isLoading) return <Loading size="10"/>;
+  if (isLoading) return <Loading />;
 
   return (
     <div className="p-6 grid md:grid-cols-3 gap-6">

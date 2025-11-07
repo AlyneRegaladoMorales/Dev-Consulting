@@ -18,7 +18,7 @@ export const customCharacter = createApi({
     }),
     getCustomCharacterById: builder.query<CustomCharacter, number>({
       query: (id) => `characters/${id}`,
-      providesTags: (result, error, id) => [
+      providesTags: (_,__, id) => [
         { type: "Character", id }
       ],
     }),
@@ -36,7 +36,7 @@ export const customCharacter = createApi({
         method: "PUT",
         body: data,
       }),
-      invalidatesTags: (result, error, { id }) => [
+      invalidatesTags: (_, __, { id }) => [
         { type: "Character", id },
       ],
     }),

@@ -15,7 +15,7 @@ const Item = ({ isCustom = false }: ItemProps) => {
     ? useGetCustomCharacterByIdQuery(Number(id))
     : useGetCharacterByIdQuery(Number(id));
 
-  if (isLoading) return <Loading size="10"/>
+  if (isLoading) return <Loading />
   if (isError || !data) return <p className="text-center text-red-600">Error al cargar datos.</p>;
 
   return (

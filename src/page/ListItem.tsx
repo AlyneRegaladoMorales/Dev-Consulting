@@ -44,7 +44,7 @@ const ListItem = () => {
     return characters.slice(start, end);
   }, [characters, page, isSearching]);
 
-  if (isLoading) return <Loading size="10"/>
+  if (isLoading) return <Loading />
   if (isError) return <p className="text-center text-red-600">Error al cargar datos.</p>;
 
   return (

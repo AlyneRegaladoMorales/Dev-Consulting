@@ -17,7 +17,7 @@ const EditCharacter = () => {
     isLoading
   );
 
-  if (isLoading || !data) return <Loading size="10"/>;
+  if (isLoading || !data) return <Loading />;
 
 
   return (

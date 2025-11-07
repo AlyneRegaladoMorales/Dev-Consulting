@@ -12,13 +12,13 @@ export const commentApi = createApi({
                 method: "POST",
                 body: comment,
             }),
-            invalidatesTags: (result, error, { characterId }) => [
+            invalidatesTags: (_, __, { characterId }) => [
                 { type: "Comments", id: `LIST-${characterId}` },
             ],
         }),
         getCommentsByPersonId: builder.query<Comment[], number>({
             query: (characterId) => `/character/${characterId}`,
-            providesTags: (result, error, characterId) => [
+            providesTags: (_, __, characterId) => [
             { type: "Comments", id: `LIST-${characterId}` },
       ],
         }),

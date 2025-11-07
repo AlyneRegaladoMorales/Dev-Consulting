@@ -1,4 +1,4 @@
-import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from "recharts"
+import { Bar, BarChart, CartesianGrid,Tooltip, XAxis, YAxis } from "recharts"
 import { useGetCharactersByAffiliationQuery } from "../api/postsApi";
 
 const arrAffiliation =[

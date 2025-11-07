@@ -1,4 +1,4 @@
-import { Cell, Legend, Pie, PieChart, Tooltip } from 'recharts';
+import { Cell,  Pie, PieChart, Tooltip } from 'recharts';
 import { useGetCharactersByGenderQuery } from '../api/postsApi';
 
 const COLORS = ["#0088FE", "#FF69B4"];
@@ -32,7 +32,7 @@ const GenreChart = () => {
                 nameKey="name"
                 label
             >
-                {data.map((entry, index) => (
+                {data.map((_, index) => (
                     <Cell key={`cell-${index}`} fill={COLORS[index]} />
                 ))}
             </Pie>

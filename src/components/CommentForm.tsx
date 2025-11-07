@@ -17,7 +17,7 @@ const CommentForm = ({ characterId }: CommentFormProps) => {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isValid, isSubmitting },
+    formState: { errors},
   } = useForm<CommentFormData>({
     mode: "onChange",
     resolver: zodResolver(commentValidation),
