@@ -48,7 +48,7 @@ const Card = ({ character, isCustom = false }: CardProps) => {
         </div>
       </Link>
       {isCustom && (
-        <div className="flex justify-between mt-3 text-sm">
+        <div className="flex flex-col sm:flex-row sm:justify-between mt-3 text-sm gap-2">
           <button
             onClick={() => navigate(`/edit/${character.id}`)}
             className="bg-amber-300 font-semibold px-4 py-2 rounded-md border  
